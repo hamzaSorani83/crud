@@ -14,7 +14,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 switch($method) {
   case "GET":
     $last_id = $_GET['page'] ? intval($_GET['page']) : 0;
-    $sql = 'SELECT * FROM users limit '.  25 . ' offset ' . $last_id+1;
+    $sql = 'SELECT * FROM users limit '.  $last_id+1 . ' offset ' . 0;
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
