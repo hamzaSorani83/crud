@@ -18,7 +18,7 @@ const ListUser = () => {
   const [disabledButton, setDisabledButtons] = useState(false)
   
   const getUsers = () => {
-    axios.get('users/?page=' + page )
+    axios.get('user.php?last_id=' + page )
       .then(res => {
         setUsers(res.data);
       }).catch(err => {
@@ -38,7 +38,7 @@ const ListUser = () => {
   
   const deleteUser = (id: string) => {
     setDisabledButtons(true);
-    axios.post('user/delete/', {id: id})
+    axios.delete('user.php?id=' + id)
       .then(res => {
         const data = JSON.parse(JSON.stringify(res.data));
         setMessage(data.message);
@@ -50,7 +50,6 @@ const ListUser = () => {
         setDisabledButtons(false);
       })
   }
-  
   return (
     <div className="flex flex-col mb-92">
       {message &&

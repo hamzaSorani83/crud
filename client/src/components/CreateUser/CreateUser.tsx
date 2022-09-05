@@ -26,7 +26,7 @@ const CreateUser = () => {
   
   const onSubmit = (data: User, actions: any) => {
     dispatch(setLoading(true))
-    axios.post("user/save/", data)
+    axios.post("user.php", data)
       .then(res => {
         const data = JSON.parse(JSON.stringify(res.data));
         setMessage(data.message);
@@ -84,7 +84,6 @@ const CreateUser = () => {
                 type="submit"
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
-                // className="my-4 inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-xs leading-tight capitalize rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 className="Btn BtnPrimary"
               >Save</button>
               {message && <div className={["Alert", success ? "AlertSuccess" : "AlertDanger"].join(" ")}>

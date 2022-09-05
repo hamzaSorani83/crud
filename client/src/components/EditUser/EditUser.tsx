@@ -22,9 +22,9 @@ const EditUser = () => {
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
   
-  const getUsers = () => {
+  const getUser = () => {
     dispatch(setLoading(true));
-    axios.get('user/?id=' + id )
+    axios.get('user.php?id=' + id )
       .then(res => {
         setUser(res.data)
       }).catch(err => {
@@ -36,7 +36,7 @@ const EditUser = () => {
   
   
   useEffect(() => {
-    getUsers();
+    getUser();
   }, []);
   
   const initialValues: User = {
@@ -47,7 +47,7 @@ const EditUser = () => {
   
   const onSubmit = (data: User, actions: any) => {
     dispatch(setLoading(true))
-    axios.put("user/edit/", data)
+    axios.put("user.php", data)
       .then(res => {
         const data = JSON.parse(JSON.stringify(res.data));
         setMessage(data.message);
